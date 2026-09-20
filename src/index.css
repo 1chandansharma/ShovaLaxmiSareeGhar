@@ -1,0 +1,237 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --crimson: #8B0000;
+    --crimson-light: #A52020;
+    --crimson-dark: #6B0000;
+    --gold: #C9A84C;
+    --gold-light: #E2C27D;
+    --gold-dark: #A8832A;
+    --cream: #FDF6EC;
+    --cream-dark: #F5E6CE;
+    --announcement-h: 32px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--cream);
+    color: #2c1a0e;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-block px-6 py-3 rounded-full font-semibold text-white transition-all duration-300;
+    background: linear-gradient(135deg, #8B0000, #A52020);
+    border: 2px solid #C9A84C;
+    box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+  }
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #6B0000, #8B0000);
+    box-shadow: 0 6px 20px rgba(139, 0, 0, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .btn-gold {
+    @apply inline-block px-6 py-3 rounded-full font-semibold transition-all duration-300;
+    background: linear-gradient(135deg, #C9A84C, #E2C27D);
+    color: #5a2d0c;
+    border: 2px solid #8B0000;
+    box-shadow: 0 4px 15px rgba(201, 168, 76, 0.4);
+  }
+  .btn-gold:hover {
+    background: linear-gradient(135deg, #A8832A, #C9A84C);
+    box-shadow: 0 6px 20px rgba(201, 168, 76, 0.6);
+    transform: translateY(-2px);
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-center mb-2;
+    color: #8B0000;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .gold-divider {
+    @apply flex items-center justify-center gap-3 mb-8;
+  }
+
+  .gold-line {
+    @apply h-px w-16 md:w-24;
+    background: linear-gradient(90deg, transparent, #C9A84C, transparent);
+  }
+
+  .gold-diamond {
+    @apply text-lg;
+    color: #C9A84C;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300;
+  }
+  .card-hover:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(139, 0, 0, 0.15);
+  }
+}
+
+/* ── Announcement bar ───────────────────────────────────────── */
+.announcement-bar {
+  height: var(--announcement-h);
+  line-height: var(--announcement-h);
+}
+
+/* ── Marquee – seamless infinite scroll ────────────────────── */
+/* Two copies of the text are placed side-by-side so the loop
+   is invisible: when copy-1 slides fully out of frame, copy-2
+   is exactly where copy-1 started, and the animation resets. */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+  white-space: nowrap;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #FDF6EC; }
+::-webkit-scrollbar-thumb { background: #8B0000; border-radius: 3px; }
+
+/* ── Floral / mandala patterns ──────────────────────────────── */
+.floral-bg {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A84C' fill-opacity='0.07'%3E%3Cpath d='M30 0C13.4 0 0 13.4 0 30s13.4 30 30 30 30-13.4 30-30S46.6 0 30 0zm0 54C16.7 54 6 43.3 6 30S16.7 6 30 6s24 10.7 24 24-10.7 24-24 24z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.mandala-bg {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Ccircle cx='40' cy='40' r='35' stroke='%23C9A84C' stroke-opacity='0.08' stroke-width='1' fill='none'/%3E%3Ccircle cx='40' cy='40' r='20' stroke='%238B0000' stroke-opacity='0.06' stroke-width='1' fill='none'/%3E%3Ccircle cx='40' cy='40' r='5' fill='%23C9A84C' fill-opacity='0.08'/%3E%3C/svg%3E");
+}
+
+/* ── Hero overlay ───────────────────────────────────────────── */
+.hero-overlay {
+  background: linear-gradient(135deg, rgba(139,0,0,0.82) 0%, rgba(107,0,0,0.70) 40%, rgba(44,26,14,0.65) 100%);
+}
+
+/* ── Shimmer gold text ──────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.shimmer-text {
+  background: linear-gradient(90deg, #C9A84C 0%, #FFF3C0 40%, #E2C27D 60%, #C9A84C 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+/* ── Fade-up entry ──────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up {
+  animation: fadeUp 0.8s ease forwards;
+}
+
+/* ── Nav underline hover ────────────────────────────────────── */
+.nav-link {
+  position: relative;
+  padding-bottom: 2px;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #C9A84C;
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after,
+.nav-link.active::after { width: 100%; }
+
+/* ── Section backgrounds ────────────────────────────────────── */
+.bg-cream      { background-color: #FDF6EC; }
+.bg-cream-dark { background-color: #F5E6CE; }
+
+/* ── Product card badge ─────────────────────────────────────── */
+.product-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: linear-gradient(135deg, #8B0000, #A52020);
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid #C9A84C;
+  letter-spacing: 0.5px;
+}
+
+/* ── Testimonial stars ──────────────────────────────────────── */
+.stars { color: #C9A84C; }
+
+/* ── WhatsApp float button ──────────────────────────────────── */
+.whatsapp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+  transition: all 0.3s ease;
+  animation: pulse-green 2s infinite;
+}
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+}
+@keyframes pulse-green {
+  0%, 100% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); }
+  50%       { box-shadow: 0 6px 30px rgba(37, 211, 102, 0.7); }
+}
+
+/* ── Gallery placeholder tiles ─────────────────────────────── */
+.gallery-placeholder {
+  background: linear-gradient(135deg, #F5E6CE 0%, #EDD5B0 50%, #F5E6CE 100%);
+  background-size: 200% 200%;
+  animation: placeholder-shimmer 2s ease infinite;
+}
+@keyframes placeholder-shimmer {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ── Reduced motion ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .shimmer-text,
+  .whatsapp-float,
+  .gallery-placeholder { animation: none; }
+  .fade-up { animation: none; opacity: 1; }
+}
